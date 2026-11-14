@@ -1,0 +1,95 @@
+{
+  "started_at": "2026-11-14T12:38:05.918334+07:00",
+  "split": "test",
+  "snapshot": {
+    "corpus_sha256": "f40e8c07dbdba41b1b2e2fbec9e5c7432752fcc288aa706fa33358a84d23b543",
+    "code_benchmark_protocol_sha256": "8d8d4948cf3e88ce3584446180259541075c390d7341f719f9557a74fc8d7594",
+    "model": "baai/bge-m3",
+    "dimensions": 1024,
+    "strategies": {
+      "A": {
+        "chunking": "fixed",
+        "size": 500,
+        "overlap": 50,
+        "filter": false
+      },
+      "B": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": false
+      },
+      "C": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": true
+      }
+    },
+    "cosine_search": "exact",
+    "top_k": 3
+  },
+  "status": "complete",
+  "versions": {
+    "python": "3.11.18",
+    "pypdf": "6.21.4",
+    "psycopg": "3.3.8",
+    "python-dotenv": "1.2.4"
+  },
+  "judge": "none",
+  "trace": "traces_test.jsonl",
+  "ingestion": {},
+  "query_seconds": {},
+  "api_usage": [
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 5,
+      "usage": {
+        "prompt_tokens": 108,
+        "total_tokens": 108,
+        "cost": 1.08e-06,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.08e-06,
+          "upstream_inference_prompt_cost": 1.08e-06,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634682-jVU5Cagn8ajbdPbGHVgy"
+    }
+  ],
+  "summary": [
+    {
+      "strategy": "A",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8
+    },
+    {
+      "strategy": "B",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8
+    },
+    {
+      "strategy": "C",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8
+    }
+  ],
+  "finished_at": "2026-11-14T12:38:07.127135+07:00",
+  "cache_hits": 0,
+  "billed_cost_usd_reported": 1.08e-06
+}

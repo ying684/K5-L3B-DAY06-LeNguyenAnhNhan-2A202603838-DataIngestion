@@ -1,0 +1,257 @@
+{
+  "snapshot": {
+    "corpus_sha256": "f40e8c07dbdba41b1b2e2fbec9e5c7432752fcc288aa706fa33358a84d23b543",
+    "code_benchmark_protocol_sha256": "8d8d4948cf3e88ce3584446180259541075c390d7341f719f9557a74fc8d7594",
+    "model": "baai/bge-m3",
+    "dimensions": 1024,
+    "strategies": {
+      "A": {
+        "chunking": "fixed",
+        "size": 500,
+        "overlap": 50,
+        "filter": false
+      },
+      "B": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": false
+      },
+      "C": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": true
+      }
+    },
+    "cosine_search": "exact",
+    "top_k": 3
+  },
+  "selection": "B",
+  "retrieval": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 9,
+      "hit3_n": 12,
+      "hit1": 0.6,
+      "hit3": 0.8,
+      "chunks": 167,
+      "retrieval_seconds": 0.2995813999996244
+    },
+    {
+      "strategy": "A",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8,
+      "chunks": 167,
+      "retrieval_seconds": 0.10096989999965444
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333,
+      "chunks": 97,
+      "retrieval_seconds": 0.33539160000054835
+    },
+    {
+      "strategy": "B",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8,
+      "chunks": 97,
+      "retrieval_seconds": 0.10170490000109567
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333,
+      "chunks": 97,
+      "retrieval_seconds": 0.30817169999863836
+    },
+    {
+      "strategy": "C",
+      "split": "test",
+      "n": 5,
+      "hit1_n": 4,
+      "hit3_n": 4,
+      "hit1": 0.8,
+      "hit3": 0.8,
+      "chunks": 97,
+      "retrieval_seconds": 0.08076230000006035
+    }
+  ],
+  "trace_count": 60,
+  "retrieved_records": 180,
+  "complete_run_paths": [
+    "starter/results/runs/20261114_123725_dev",
+    "starter/results/runs/20261114_123805_test"
+  ],
+  "failed_attempts": [
+    {
+      "path": "starter/results/runs/20261114_122116_dev",
+      "status": "failed",
+      "error": "Returned model differs from requested model",
+      "cost_usd": null
+    },
+    {
+      "path": "starter/results/runs/20261114_122640_dev",
+      "status": "failed",
+      "error": "OpenRouter returned model 'parasail-bge-m3', requested 'baai/bge-m3'",
+      "cost_usd": null
+    },
+    {
+      "path": "starter/results/runs/20261114_122856_dev",
+      "status": "failed",
+      "error": "OpenRouter returned model 'parasail-bge-m3', requested 'baai/bge-m3'",
+      "cost_usd": null
+    }
+  ],
+  "successful_usage": {
+    "requests": 19,
+    "inputs": 283,
+    "total_tokens": 40815,
+    "provider_reported_usd": "0.00040815",
+    "excludes_unknown_failed_attempt_cost": true
+  },
+  "audit": {
+    "A": {
+      "coherence": {
+        "n": 10,
+        "recorded_labeled_n": 10,
+        "recorded_mean": 1.0,
+        "recorded_counts_0_1_2": [
+          0,
+          10,
+          0
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 10
+        }
+      },
+      "grounding": {
+        "n": 5,
+        "recorded_labeled_n": 5,
+        "recorded_mean": 2.0,
+        "recorded_counts_0_1_2": [
+          0,
+          0,
+          5
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 5
+        }
+      },
+      "metadata": {
+        "n": 15,
+        "recorded_labeled_n": 15,
+        "recorded_correct_n": 15,
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 15
+        }
+      },
+      "test_filter_from_trace": {
+        "compliant_n": 1,
+        "n": 1,
+        "note": "Automated trace check; A/B do not apply a filter even when retrieved records happen to comply."
+      }
+    },
+    "B": {
+      "coherence": {
+        "n": 10,
+        "recorded_labeled_n": 10,
+        "recorded_mean": 1.7,
+        "recorded_counts_0_1_2": [
+          0,
+          3,
+          7
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 10
+        }
+      },
+      "grounding": {
+        "n": 5,
+        "recorded_labeled_n": 5,
+        "recorded_mean": 2.0,
+        "recorded_counts_0_1_2": [
+          0,
+          0,
+          5
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 5
+        }
+      },
+      "metadata": {
+        "n": 15,
+        "recorded_labeled_n": 15,
+        "recorded_correct_n": 15,
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 15
+        }
+      },
+      "test_filter_from_trace": {
+        "compliant_n": 1,
+        "n": 1,
+        "note": "Automated trace check; A/B do not apply a filter even when retrieved records happen to comply."
+      }
+    },
+    "C": {
+      "coherence": {
+        "n": 10,
+        "recorded_labeled_n": 10,
+        "recorded_mean": 1.7,
+        "recorded_counts_0_1_2": [
+          0,
+          3,
+          7
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 10
+        }
+      },
+      "grounding": {
+        "n": 5,
+        "recorded_labeled_n": 5,
+        "recorded_mean": 2.0,
+        "recorded_counts_0_1_2": [
+          0,
+          0,
+          5
+        ],
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 5
+        }
+      },
+      "metadata": {
+        "n": 15,
+        "recorded_labeled_n": 15,
+        "recorded_correct_n": 15,
+        "reviewers": {
+          "Lê Nguyễn Anh Nhân": 15
+        }
+      },
+      "test_filter_from_trace": {
+        "compliant_n": 1,
+        "n": 1,
+        "note": "Automated trace check; A/B do not apply a filter even when retrieved records happen to comply."
+      }
+    }
+  }
+}
