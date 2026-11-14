@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-11-14T12:15:38.512385+07:00",
+  "model": "baai/bge-m3",
+  "dimensions": 1024,
+  "strategies": {
+    "A": {
+      "chunking": "fixed",
+      "size": 500,
+      "overlap": 50,
+      "filter": false
+    },
+    "B": {
+      "chunking": "paragraph",
+      "size": 1000,
+      "overlap": 0,
+      "filter": false
+    },
+    "C": {
+      "chunking": "paragraph",
+      "size": 1000,
+      "overlap": 0,
+      "filter": true
+    }
+  },
+  "selection_rule": "Max dev Hit@3, then dev Hit@1, then fewer chunks, then alphabetical strategy ID",
+  "split_rule": "dev: concepts/feature engineering/linear regression; test: Overfitting (chapter 8)",
+  "leakage_limit": "Same book and related topics; test questions authored by same AI assistant. No test retrieval used for tuning.",
+  "evidence_metric": "Same source+physical page and entire normalized evidence quote in one chunk; any declared alternative accepted",
+  "coherence_positions": [
+    {
+      "page": 78,
+      "offset": 1138
+    },
+    {
+      "page": 79,
+      "offset": 1322
+    },
+    {
+      "page": 80,
+      "offset": 1601
+    },
+    {
+      "page": 81,
+      "offset": 1573
+    },
+    {
+      "page": 82,
+      "offset": 1046
+    },
+    {
+      "page": 83,
+      "offset": 1040
+    },
+    {
+      "page": 84,
+      "offset": 1235
+    },
+    {
+      "page": 85,
+      "offset": 741
+    },
+    {
+      "page": 86,
+      "offset": 1224
+    },
+    {
+      "page": 87,
+      "offset": 1236
+    }
+  ],
+  "manual_labels": "Author must review source, chunks and top-3; labels start blank. AI suggestions are not human audit.",
+  "api_batch_size": 16,
+  "automatic_retries": 0,
+  "judge": "none"
+}

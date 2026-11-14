@@ -1,0 +1,63 @@
+{
+  "selected_at": "2026-11-14T12:37:50.699134+07:00",
+  "strategy": "B",
+  "rule": "Max dev Hit@3, then dev Hit@1, then fewer chunks, then alphabetical strategy ID",
+  "snapshot": {
+    "corpus_sha256": "f40e8c07dbdba41b1b2e2fbec9e5c7432752fcc288aa706fa33358a84d23b543",
+    "code_benchmark_protocol_sha256": "8d8d4948cf3e88ce3584446180259541075c390d7341f719f9557a74fc8d7594",
+    "model": "baai/bge-m3",
+    "dimensions": 1024,
+    "strategies": {
+      "A": {
+        "chunking": "fixed",
+        "size": 500,
+        "overlap": 50,
+        "filter": false
+      },
+      "B": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": false
+      },
+      "C": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": true
+      }
+    },
+    "cosine_search": "exact",
+    "top_k": 3
+  },
+  "dev_run": "starter\\results\\runs\\20261114_123725_dev",
+  "metrics": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 9,
+      "hit3_n": 12,
+      "hit1": 0.6,
+      "hit3": 0.8
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333
+    }
+  ]
+}

@@ -17,7 +17,7 @@ results/                          # thống kê, trace, nhãn audit, log
 report/individual/<MSSV>_<HoTen>.md
 ```
 
-Mẫu báo cáo: [report/individual/MSSV_HoTen.md](report/individual/MSSV_HoTen.md). `src/` có thể đặt ở root hoặc `starter/src/`; benchmark và dữ liệu thật do học viên tạo. Nếu không được phép nộp dữ liệu gốc hoặc trace chứa nội dung bị hạn chế, cung cấp hướng dẫn truy cập/tái tạo và minh chứng được phép chia sẻ; báo cho người chấm biết cách xác minh.
+Mẫu báo cáo: [REPORT_TEMPLATE.md](REPORT_TEMPLATE.md). `src/` có thể đặt ở root hoặc `starter/src/`; benchmark và dữ liệu thật do học viên tạo. Nếu không được phép nộp dữ liệu gốc hoặc trace chứa nội dung bị hạn chế, cung cấp hướng dẫn truy cập/tái tạo và minh chứng được phép chia sẻ; báo cho người chấm biết cách xác minh.
 
 ## Checklist
 

@@ -8,3 +8,7 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 *.sqlite
+
+# Local original book and regenerable embedding cache.
+starter/data/raw/
+starter/.cache/

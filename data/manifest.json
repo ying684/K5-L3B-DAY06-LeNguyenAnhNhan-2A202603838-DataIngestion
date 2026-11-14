@@ -1,0 +1,311 @@
+{
+  "source_id": "mlcb-20180327",
+  "title": "Machine Learning cơ bản",
+  "author": "Vũ Hữu Tiệp",
+  "source_path_or_url": "starter/data/raw/book_ML_color.pdf",
+  "original_url": "https://machinelearningcoban.com/ebook/",
+  "license_or_permission": "User attests permitted processing in conversation; no independent written permission supplied. Copyright terms at physical page 9.",
+  "permission_evidence": "User statement: hợp lệ hết khỏi lo; external API processing and redistribution terms not independently verified",
+  "accessed_at": "2026-11-14T12:36:57.560941+07:00",
+  "snapshot": "2018-03-27",
+  "sha256": "f40e8c07dbdba41b1b2e2fbec9e5c7432752fcc288aa706fa33358a84d23b543",
+  "physical_pages": 400,
+  "counted_content_pages": 32,
+  "counting_rule": "Physical PDF pages 78-109 inclusive, substantive chapters 5-8; no cover, TOC, blank or references-only pages. No character threshold used for PDF.",
+  "excluded_scope": "All other physical pages excluded intentionally; not an extraction failure.",
+  "metadata_types": {
+    "chapter": "integer from chapter headings",
+    "printed_page": "integer, physical page minus 12 for selected range",
+    "language": "vi, observed source language"
+  },
+  "pages": [
+    {
+      "page": 78,
+      "characters": 2277,
+      "chapter": 5,
+      "chapter_title": "Các khái niệm cơ bản",
+      "language": "vi",
+      "printed_page": 66,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 79,
+      "characters": 2645,
+      "chapter": 5,
+      "chapter_title": "Các khái niệm cơ bản",
+      "language": "vi",
+      "printed_page": 67,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 80,
+      "characters": 3203,
+      "chapter": 5,
+      "chapter_title": "Các khái niệm cơ bản",
+      "language": "vi",
+      "printed_page": 68,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 81,
+      "characters": 3147,
+      "chapter": 5,
+      "chapter_title": "Các khái niệm cơ bản",
+      "language": "vi",
+      "printed_page": 69,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 82,
+      "characters": 2093,
+      "chapter": 5,
+      "chapter_title": "Các khái niệm cơ bản",
+      "language": "vi",
+      "printed_page": 70,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 83,
+      "characters": 2081,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 71,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 84,
+      "characters": 2470,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 72,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 85,
+      "characters": 1483,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 73,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 86,
+      "characters": 2449,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 74,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 87,
+      "characters": 2472,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 75,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 88,
+      "characters": 2033,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 76,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 89,
+      "characters": 2711,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 77,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 90,
+      "characters": 1893,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 78,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 91,
+      "characters": 1188,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 79,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 92,
+      "characters": 1980,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 80,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 93,
+      "characters": 2843,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 81,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 94,
+      "characters": 1589,
+      "chapter": 6,
+      "chapter_title": "Giới thiệu về feature engineering",
+      "language": "vi",
+      "printed_page": 82,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 95,
+      "characters": 1829,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 83,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 96,
+      "characters": 2056,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 84,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 97,
+      "characters": 1995,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 85,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 98,
+      "characters": 2266,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 86,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 99,
+      "characters": 1338,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 87,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 100,
+      "characters": 1473,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 88,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 101,
+      "characters": 1994,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 89,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 102,
+      "characters": 1926,
+      "chapter": 7,
+      "chapter_title": "Linear regression",
+      "language": "vi",
+      "printed_page": 90,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 103,
+      "characters": 1799,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 91,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 104,
+      "characters": 1590,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 92,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 105,
+      "characters": 2396,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 93,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 106,
+      "characters": 2269,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 94,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 107,
+      "characters": 2955,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 95,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 108,
+      "characters": 2124,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 96,
+      "snapshot": "2018-03-27"
+    },
+    {
+      "page": 109,
+      "characters": 2825,
+      "chapter": 8,
+      "chapter_title": "Overfitting",
+      "language": "vi",
+      "printed_page": 97,
+      "snapshot": "2018-03-27"
+    }
+  ]
+}

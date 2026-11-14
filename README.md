@@ -1,47 +1,45 @@
 # Day 06 · Data Ingestion Engineering
 
-**Lab cá nhân** · **4 giờ** · **Dữ liệu tự chọn**
+Bài lab dùng 32 trang tiếng Việt của *Machine Learning cơ bản* (Vũ Hữu Tiệp, bản 27/03/2018) để so sánh ba cấu hình chunking/retrieval. Embedding: OpenRouter `baai/bge-m3`, 1024 chiều; lưu trữ: PostgreSQL + pgvector, cosine exact search.
 
-Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, rồi đo xem cách chuẩn bị dữ liệu nào hiệu quả nhất.
+## Kết quả hiện có
 
-| 📄 Dữ liệu | 🧩 Chiến lược | 🎯 Benchmark |
-|---|---|---|
-| Tối thiểu **30 trang nội dung** | Tối thiểu **3 cấu hình** | Tối thiểu **20 câu hỏi** |
+| Cấu hình | Số chunk | Dev Hit@1 | Dev Hit@3 | Test Hit@1 | Test Hit@3 |
+|---|---:|---:|---:|---:|---:|
+| A: fixed 500, overlap 50 | 167 | 9/15 | 12/15 | 4/5 | 4/5 |
+| B: nhóm đoạn, tối đa 1000 | 97 | 12/15 | 14/15 | 4/5 | 4/5 |
+| C: B + chapter filter | 97 | 12/15 | 14/15 | 4/5 | 4/5 |
 
-## Bắt đầu nhanh
+B được chọn trên dev trước test theo quy tắc đã lưu. B/C bằng điểm; không kết luận metadata filter cải thiện Hit@3 trên bộ này. Ba bảng audit đã điền nhãn, lý do và reviewer; phương pháp đánh giá trình bày trong báo cáo.
 
-Dùng [starter PostgreSQL + pgvector](starter/README.md) để dựng database và hoàn thiện các hàm TODO, hoặc tự chọn vector store tương đương. Starter chỉ là khung: **bạn tự hiện thực pipeline và benchmark**.
+## Đọc và kiểm tra bài làm
 
-## 1. Xây pipeline
+- [Báo cáo theo mẫu bốn mục](report/individual/2A202603838_LeNguyenAnhNhan.md).
+- [Hướng dẫn setup/run](starter/README.md).
+- [Manifest corpus](data/manifest.json): 32 trang PDF vật lý 78–109, chương 5–8.
+- [Benchmark](benchmark/questions.json): 15 dev, 5 test; 3 câu filter dev, 1 câu filter test.
+- [Protocol trước thí nghiệm](artifacts/protocol.json), [quyết định chọn B](artifacts/dev_selection.json), [experiment log](artifacts/experiment_log.csv).
+- [Tổng hợp JSON](starter/results/consolidated.json), [bảng retrieval CSV](starter/results/summary.csv).
+- [Trace, usage và log lỗi](starter/results/runs/), [nhãn audit](starter/results/audit/).
+- [Thông tin học viên](STUDENT.md): còn chờ tên, MSSV, lớp, repo và commit chốt.
 
-![Đọc tài liệu, chuẩn hóa, chia chunk, tạo vector, lưu và kiểm tra](assets/ingestion-pipeline.svg)
+Từ thư mục `starter/`, tổng hợp và đối chiếu artifacts đã có, không gọi API:
 
-Chọn tài liệu được phép sử dụng; giữ **ID tài liệu, nguồn, trang/vị trí** và metadata phù hợp. Dùng embedding model thật qua API hoặc chạy local; lưu và truy xuất bằng pgvector, Qdrant, Chroma hoặc một store tương đương.
+```powershell
+python -B scripts/finalize_results.py
+python -B -m unittest discover -s tests -v
+```
 
-## 2. So sánh và đánh giá
+## Corpus và tái lập
 
-![Ba chiến lược được đánh giá trên cùng corpus và benchmark dev/test](assets/benchmark-workflow.svg)
+PDF gốc giữ ở `starter/data/raw/book_ML_color.pdf` và không được Git theo dõi theo quy tắc ignore. Lấy bản sách qua nguồn tác giả tại https://machinelearningcoban.com/ebook/ theo quyền truy cập hợp lệ, dùng bản 400 trang cập nhật 27/03/2018. Đối chiếu SHA-256 với manifest trước khi chạy; bản khác có thể lệch trang và evidence. Nếu người chấm không có bản tương ứng, tác giả cần cung cấp cách truy cập được phép trước khi nộp.
 
-Dùng cùng dữ liệu, model và câu hỏi cho cả ba cấu hình. Tách **15 câu dev / 5 câu test** trước khi chạy; chọn cấu hình trên dev, rồi đánh giá test sau khi cố định. Mỗi câu hỏi cần có đoạn bằng chứng và trang nguồn; thiết kế bộ câu hỏi và đánh giá theo [BENCHMARK.md](BENCHMARK.md).
+```powershell
+Get-FileHash -Algorithm SHA256 .\starter\data\raw\book_ML_color.pdf
+```
 
-Đánh giá theo năm khía cạnh: **độ chính xác truy xuất**, **tính mạch lạc của chunk**, **tính hữu dụng của metadata**, **chất lượng grounding** và **tác động của chiến lược dữ liệu**. Giải thích lựa chọn bằng kết quả, ví dụ lỗi và các đánh đổi.
+Corpus, benchmark và code được khóa bằng hash trong log dev/test để đối chiếu khi tái lập.
 
-## 3. Chuẩn bị bài nộp
+## Tài liệu đề bài
 
-1. Chạy pipeline và lưu cấu hình, kết quả top-3, trace cùng nhãn đánh giá thủ công.
-2. Điền [thông tin học viên](STUDENT.md), [nhật ký thí nghiệm](artifacts/experiment_log.csv) và bản sao [mẫu báo cáo cá nhân](report/individual/MSSV_HoTen.md).
-3. Kiểm tra mã nguồn, cách chạy, manifest dữ liệu và checklist trong [SUBMISSION.md](SUBMISSION.md).
-
-## Tài liệu hướng dẫn
-
-| Bạn cần tìm | Tài liệu |
-|---|---|
-| Setup baseline PostgreSQL + pgvector | [starter/README.md](starter/README.md) |
-| Các bước làm và cách tính chỉ số | [GUIDE.md](GUIDE.md) |
-| Tiến độ trong 4 giờ | [CHECKPOINTS.md](CHECKPOINTS.md) |
-| Năm tiêu chí benchmark và bộ câu hỏi | [BENCHMARK.md](BENCHMARK.md) |
-| Tiêu chí chấm điểm | [RUBRIC.md](RUBRIC.md) |
-| Quy tắc sử dụng dữ liệu, AI và API | [RULES.md](RULES.md) |
-| Cách nộp bài | [SUBMISSION.md](SUBMISSION.md) |
-
-[data/format-example.json](data/format-example.json) chỉ minh họa định dạng, không phải corpus đủ điều kiện. Phần xử lý và benchmark do bạn tự hiện thực; không bắt buộc xây chatbot.
+Các quy định đề gốc được giữ trong [GUIDE](GUIDE.md), [BENCHMARK](BENCHMARK.md), [RULES](RULES.md), [RUBRIC](RUBRIC.md), [SUBMISSION](SUBMISSION.md), [CHECKPOINTS](CHECKPOINTS.md). Không bắt buộc xây chatbot hoặc hybrid retrieval.

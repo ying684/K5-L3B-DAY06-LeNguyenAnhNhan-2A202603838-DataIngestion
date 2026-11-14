@@ -1,4 +1,4 @@
-strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
-A,,,,,,,,,,,,
-B,,,,,,,,,,,,
-C,,,,,,,,,,,,
+﻿strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
+A,fixed,500,50,document_id;source;page;chapter;chapter_title;printed_page;language;snapshot;offsets,none,baai/bge-m3,Baseline fixed windows; may split an evidence span,9/15,12/15,4/5,4/5,"Measured in frozen complete runs; audit labels recorded with reviewer provenance. A-B changes method, size and overlap."
+B,paragraph,1000,0,document_id;source;page;chapter;chapter_title;printed_page;language;snapshot;offsets,none,baai/bge-m3,Grouping paragraphs may preserve context with fewer chunks; A-B also changes length and overlap,12/15,14/15,4/5,4/5,"Measured in frozen complete runs; audit labels recorded with reviewer provenance. A-B changes method, size and overlap."
+C,paragraph,1000,0,document_id;source;page;chapter;chapter_title;printed_page;language;snapshot;offsets,chapter_if_supplied,baai/bge-m3,Same chunks and vectors as B; isolate metadata filtering,12/15,14/15,4/5,4/5,Measured in frozen complete runs; audit labels recorded with reviewer provenance. B-C changes only filter; shares B embedding vectors and cache.
