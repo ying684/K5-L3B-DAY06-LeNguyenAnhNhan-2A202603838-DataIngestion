@@ -21,7 +21,7 @@ B được chọn trên dev trước test theo quy tắc đã lưu. B/C bằng �
 - [Protocol trước thí nghiệm](artifacts/protocol.json), [quyết định chọn B](artifacts/dev_selection.json), [experiment log](artifacts/experiment_log.csv).
 - [Tổng hợp JSON](starter/results/consolidated.json), [bảng retrieval CSV](starter/results/summary.csv).
 - [Trace, usage và log lỗi](starter/results/runs/), [nhãn audit](starter/results/audit/).
-- [Thông tin học viên](STUDENT.md): còn chờ tên, MSSV, lớp, repo và commit chốt.
+- [Thông tin học viên](STUDENT.md).
 
 Từ thư mục `starter/`, tổng hợp và đối chiếu artifacts đã có, không gọi API:
 
@@ -32,7 +32,7 @@ python -B -m unittest discover -s tests -v
 
 ## Corpus và tái lập
 
-PDF gốc giữ ở `starter/data/raw/book_ML_color.pdf` và không được Git theo dõi theo quy tắc ignore. Lấy bản sách qua nguồn tác giả tại https://machinelearningcoban.com/ebook/ theo quyền truy cập hợp lệ, dùng bản 400 trang cập nhật 27/03/2018. Đối chiếu SHA-256 với manifest trước khi chạy; bản khác có thể lệch trang và evidence. Nếu người chấm không có bản tương ứng, tác giả cần cung cấp cách truy cập được phép trước khi nộp.
+PDF gốc giữ ở `starter/data/raw/book_ML_color.pdf` và không được Git theo dõi theo quy tắc ignore. Lấy bản sách qua nguồn tác giả tại https://machinelearningcoban.com/ebook/ theo quyền truy cập hợp lệ, dùng bản 400 trang cập nhật 27/03/2018. Đối chiếu SHA-256 với manifest trước khi chạy; bản khác có thể lệch trang và evidence.
 
 ```powershell
 Get-FileHash -Algorithm SHA256 .\starter\data\raw\book_ML_color.pdf

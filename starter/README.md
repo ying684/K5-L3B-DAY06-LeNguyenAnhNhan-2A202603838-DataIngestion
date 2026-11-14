@@ -1,65 +1,63 @@
-# Starter · PostgreSQL + pgvector
+# Chạy pipeline Day 06
 
-Bộ khởi động **tùy chọn** cho lab cá nhân. Docker Compose tạo PostgreSQL + pgvector local; các file trong `src/` là **khung pseudocode có TODO**, chưa đọc tài liệu, tạo embedding, lưu vector hay chạy benchmark. Bạn cần tự hiện thực. Vẫn có thể chọn Qdrant, Chroma hoặc vector store tương đương theo [GUIDE.md](../GUIDE.md).
+## Setup
 
-## Cấu trúc
+Môi trường đã chạy: Python 3.11.18, pypdf 6.21.4, psycopg 3.3.8, python-dotenv 1.2.4; PostgreSQL 16.16 và pgvector 0.8.7.
 
-```text
-starter/
-├── docker-compose.yml     # PostgreSQL 16 + pgvector, chỉ mở cổng local
-├── init.sql               # bật extension khi tạo database mới
-├── requirements.txt       # psycopg, pypdf và python-dotenv
-├── .env.example           # cấu hình mẫu; copy thành .env
-├── scripts/check_setup.py # kiểm tra kết nối và extension (đã chạy được)
-├── src/
-│   ├── models.py          # cấu trúc dữ liệu mẫu
-│   ├── ingestion.py       # TODO: đọc / chuẩn hóa tài liệu
-│   ├── chunking.py        # TODO: chia chunk
-│   ├── embeddings.py      # TODO: chọn model API hoặc local
-│   ├── store.py           # TODO: lưu vector, metadata và filter
-│   ├── evaluation.py      # TODO: chấm truy xuất, lưu trace
-│   └── run.py             # TODO: kết nối các bước thành pipeline
-├── data/                  # bạn tự chuẩn bị corpus được phép sử dụng
-└── results/               # lưu kết quả của bạn
-```
+Chạy từ thư mục `starter/`:
 
-## 1. Cài và kiểm tra database
-
-Cần Docker Desktop hoặc Docker Engine + Compose, Python **3.11–3.14**, và mạng để tải image/dependencies lần đầu. Các lệnh sau chạy từ thư mục `starter/`:
-
-```bash
-cd starter
-python3 -m venv .venv
-```
-
-Kích hoạt `.venv`: macOS/Linux dùng `source .venv/bin/activate`; Windows PowerShell dùng `.venv\Scripts\Activate.ps1`. Sau đó:
-
-```bash
+```powershell
 python -m pip install -r requirements.txt
-# macOS/Linux: cp .env.example .env
-# Windows PowerShell: Copy-Item .env.example .env
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 docker compose -p day6_student_starter up -d --wait
-python scripts/check_setup.py
+python -B scripts/check_setup.py
 ```
 
-Kỳ vọng: hiện tên database, phiên bản PostgreSQL và pgvector, sau đó `Setup OK`. Đây **chỉ là kiểm tra hạ tầng**, không phải kết quả benchmark. Docker dùng cổng `127.0.0.1:55433` và mật khẩu cố định **chỉ dùng local cho lab**; nếu cổng bận, sửa đồng thời port trong `docker-compose.yml` và `DATABASE_URL` trong `.env`. `init.sql` chỉ chạy khi volume mới được tạo; nếu database sẵn có chưa bật extension, xem log Docker và kiểm tra cấu hình thay vì xóa volume chứa dữ liệu.
+Điền `OPENROUTER_API_KEY` và `EMBEDDING_MODEL=baai/bge-m3` vào .env local. Giữ DATABASE_URL theo cấu hình Docker, cổng local 55433. Không commit .env hoặc key.
 
-Dừng container nhưng giữ dữ liệu:
+Đặt PDF tại `data/raw/book_ML_color.pdf`. Dùng bản sách 400 trang, cập nhật 27/03/2018; nguồn, quyền sử dụng, SHA-256 và phạm vi trang ghi trong [manifest](../data/manifest.json). Cách lấy và kiểm tra bản sách tại [README chính](../README.md).
 
-```bash
+## Chạy thí nghiệm
+
+```powershell
+python -B -m src.run prepare
+python -B -m src.run dev --allow-api
+python -B -m src.run test --allow-api
+python -B -m src.run audit
+python -B scripts/finalize_results.py
+```
+
+- `prepare`: đọc 32 trang PDF 78–109, chuẩn hóa, chia chunk, kiểm tra evidence, lưu stats và hash.
+- `dev`: embedding OpenRouter `baai/bge-m3`, 1024 chiều; lưu PostgreSQL, kiểm tra nạp lại không trùng, truy xuất cosine exact top-3 và chọn cấu hình.
+- `test`: chạy sau khi chốt dev và khi hash còn khớp.
+- `audit`: tạo bảng coherence, grounding và metadata nếu file chưa tồn tại.
+- `finalize_results.py`: đối chiếu trace/summary, tổng hợp nhãn audit và cập nhật experiment log; không gọi API.
+
+A dùng cửa sổ 500 ký tự/overlap 50; B nhóm đoạn tối đa 1000/overlap 0; C dùng chunk/vector B và thêm chapter filter từ câu hỏi. Model, corpus, store và benchmark giữ nguyên giữa ba cấu hình.
+
+API chỉ được gọi khi có `--allow-api`; batch tối đa 16, không retry hoặc fallback model. Alias response `parasail-bge-m3` được ghi cùng model yêu cầu và provider. Cache ở `.cache/embeddings/` giúp tái sử dụng vector, không cần gọi API riêng cho C.
+
+Project đã có kết quả dev/test. CLI từ chối chạy lại tập đã có trace. Để kiểm tra kết quả hiện tại, chỉ chạy:
+
+```powershell
+python -B scripts/finalize_results.py
+python -B -m unittest discover -s tests -v
+```
+
+Tests dùng response giả lập offline; kết quả retrieval lấy từ các lượt API thật đã lưu.
+
+## Kết quả và audit
+
+- `results/prepared/`: text chuẩn hóa, chunk A/B và plan. C dùng chung chunk B.
+- `results/runs/`: log cả thất bại/thành công, usage, trace và summary.
+- `results/audit/`: 30 dòng coherence, 15 grounding, 45 metadata, kèm nhãn và lý do.
+- `results/summary.csv`, `results/consolidated.json`: kết quả tổng hợp.
+- `../artifacts/`: protocol, lựa chọn dev và experiment log.
+
+Coherence/grounding dùng thang 0–2; metadata/filter dùng 0/1, không yêu cầu filter ghi N/A. Phương pháp, kết quả và giới hạn đánh giá nằm trong [báo cáo](../report/individual/2A202603838_LeNguyenAnhNhan.md). Sau khi sửa nhãn, chạy lại script tổng hợp; không sửa trace hoặc gold.
+
+Giữ raw PDF và cache ở local theo .gitignore. Dừng database nhưng giữ dữ liệu:
+
+```powershell
 docker compose -p day6_student_starter stop
 ```
-
-## 2. Chọn embedding model
-
-Điền key tương ứng trong `.env` nếu dùng OpenRouter, OpenAI hoặc Gemini; **không commit `.env`**. Model local không cần API key. `requirements.txt` chỉ có dependencies cơ bản: tự cài SDK hoặc thư viện local phù hợp với model bạn chọn và ghi lại version/lệnh cài trong báo cáo. Ghi tên model và số chiều; dùng cùng model cho toàn bộ chiến lược và vector query tương thích vector document.
-
-## 3. Hoàn thiện pipeline
-
-1. Đặt corpus vào `data/` hoặc cung cấp manifest/hướng dẫn truy cập. Đọc [GUIDE.md](../GUIDE.md) về **30 trang nội dung**, quyền dữ liệu và metadata.
-2. Hoàn thiện từng hàm TODO trong `src/`. Lưu ID tài liệu, nguồn, trang/vị trí và ít nhất một trường filter có ích.
-3. Xây ít nhất ba cấu hình; ví dụ A fixed-size, B theo đoạn, C như B nhưng có filter. Cần cùng corpus, model và benchmark; nạp lại không nhân đôi và xử lý chunk cũ khi dữ liệu đổi.
-4. Tự viết ít nhất 20 câu hỏi kèm evidence, tách dev/test trước khi thử theo [BENCHMARK.md](../BENCHMARK.md). Lưu trace top-3 và báo cáo đủ năm tiêu chí.
-5. Sau khi hoàn thiện, chạy `python -m src.run` từ thư mục `starter/`. Trước khi làm TODO, lệnh này **chủ động báo `NotImplementedError`**.
-
-Lưu code, cấu hình, kết quả và lệnh chạy để người chấm tái lập; không commit key, dữ liệu mật hoặc dữ liệu không có quyền chia sẻ.

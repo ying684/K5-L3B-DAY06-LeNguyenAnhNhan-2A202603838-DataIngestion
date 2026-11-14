@@ -1,0 +1,426 @@
+{
+  "started_at": "2026-11-14T12:37:25.272979+07:00",
+  "split": "dev",
+  "snapshot": {
+    "corpus_sha256": "f40e8c07dbdba41b1b2e2fbec9e5c7432752fcc288aa706fa33358a84d23b543",
+    "code_benchmark_protocol_sha256": "8d8d4948cf3e88ce3584446180259541075c390d7341f719f9557a74fc8d7594",
+    "model": "baai/bge-m3",
+    "dimensions": 1024,
+    "strategies": {
+      "A": {
+        "chunking": "fixed",
+        "size": 500,
+        "overlap": 50,
+        "filter": false
+      },
+      "B": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": false
+      },
+      "C": {
+        "chunking": "paragraph",
+        "size": 1000,
+        "overlap": 0,
+        "filter": true
+      }
+    },
+    "cosine_search": "exact",
+    "top_k": 3
+  },
+  "status": "complete",
+  "versions": {
+    "python": "3.11.18",
+    "pypdf": "6.21.4",
+    "psycopg": "3.3.8",
+    "python-dotenv": "1.2.4"
+  },
+  "judge": "none",
+  "trace": "traces_dev.jsonl",
+  "ingestion": {
+    "A": {
+      "seconds_including_repeat": 14.414056499999788,
+      "chunks": 167,
+      "count_after_first": 167,
+      "count_after_repeat": 167,
+      "paid_batches": 11,
+      "vectors_reused_from_B": false
+    },
+    "B": {
+      "seconds_including_repeat": 8.501123299999563,
+      "chunks": 97,
+      "count_after_first": 97,
+      "count_after_repeat": 97,
+      "paid_batches": 6,
+      "vectors_reused_from_B": false
+    },
+    "C": {
+      "seconds_including_repeat": 0.34071119999953225,
+      "chunks": 97,
+      "count_after_first": 97,
+      "count_after_repeat": 97,
+      "paid_batches": 0,
+      "vectors_reused_from_B": true
+    }
+  },
+  "query_seconds": {},
+  "api_usage": [
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2086,
+        "total_tokens": 2086,
+        "cost": 2.086e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.086e-05,
+          "upstream_inference_prompt_cost": 2.086e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634642-67G2fLSmGwRwWNnXN6pk"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1923,
+        "total_tokens": 1923,
+        "cost": 1.923e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.923e-05,
+          "upstream_inference_prompt_cost": 1.923e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634643-gTee0EeLK3zJzD4Vgt2U"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1820,
+        "total_tokens": 1820,
+        "cost": 1.82e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.82e-05,
+          "upstream_inference_prompt_cost": 1.82e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634644-OVgyPD2QSJVHjNwX3Mxj"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2016,
+        "total_tokens": 2016,
+        "cost": 2.016e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.016e-05,
+          "upstream_inference_prompt_cost": 2.016e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634645-GBgoNiAKcxb8iV8h0hXH"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1992,
+        "total_tokens": 1992,
+        "cost": 1.992e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.992e-05,
+          "upstream_inference_prompt_cost": 1.992e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634646-6ApgLVzcfHOKOKku7wox"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1984,
+        "total_tokens": 1984,
+        "cost": 1.984e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.984e-05,
+          "upstream_inference_prompt_cost": 1.984e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634647-xGf6ybuZb39UotMDK2bi"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2343,
+        "total_tokens": 2343,
+        "cost": 2.343e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.343e-05,
+          "upstream_inference_prompt_cost": 2.343e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634648-JbU2L7N3l2RbTJd5UkIr"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2384,
+        "total_tokens": 2384,
+        "cost": 2.384e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.384e-05,
+          "upstream_inference_prompt_cost": 2.384e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634650-lZ4R7tpqCEvnoR2z2zp5"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1970,
+        "total_tokens": 1970,
+        "cost": 1.97e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.97e-05,
+          "upstream_inference_prompt_cost": 1.97e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634651-LVVh45s2Af9ttFOPkkiY"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 1952,
+        "total_tokens": 1952,
+        "cost": 1.952e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 1.952e-05,
+          "upstream_inference_prompt_cost": 1.952e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634652-xGR5OA10gG9v8A5owJzE"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 7,
+      "usage": {
+        "prompt_tokens": 880,
+        "total_tokens": 880,
+        "cost": 8.8e-06,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 8.8e-06,
+          "upstream_inference_prompt_cost": 8.8e-06,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634653-hZx3mPHkOoe0YHB3uBJ9"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 3140,
+        "total_tokens": 3140,
+        "cost": 3.14e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 3.14e-05,
+          "upstream_inference_prompt_cost": 3.14e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634656-Cm5KOpKzzXDEjhusgEIt"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2997,
+        "total_tokens": 2997,
+        "cost": 2.997e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.997e-05,
+          "upstream_inference_prompt_cost": 2.997e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634657-8zOiICgl3Ys7vAt5fmpJ"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 3113,
+        "total_tokens": 3113,
+        "cost": 3.113e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 3.113e-05,
+          "upstream_inference_prompt_cost": 3.113e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634658-BaKejCUirbeuTSsb18Lj"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 3531,
+        "total_tokens": 3531,
+        "cost": 3.531e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 3.531e-05,
+          "upstream_inference_prompt_cost": 3.531e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634659-bEb9AwOdsGFVj8hKiLW7"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 3485,
+        "total_tokens": 3485,
+        "cost": 3.485e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 3.485e-05,
+          "upstream_inference_prompt_cost": 3.485e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634661-ZlY7hhEzbw4AhNK8xuFo"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 16,
+      "usage": {
+        "prompt_tokens": 2786,
+        "total_tokens": 2786,
+        "cost": 2.786e-05,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 2.786e-05,
+          "upstream_inference_prompt_cost": 2.786e-05,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634662-a9H5jn5nru7Oz23nQbs8"
+    },
+    {
+      "model": "baai/bge-m3",
+      "returned_model": "parasail-bge-m3",
+      "provider": "Parasail",
+      "inputs": 15,
+      "usage": {
+        "prompt_tokens": 305,
+        "total_tokens": 305,
+        "cost": 3.05e-06,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 3.05e-06,
+          "upstream_inference_prompt_cost": 3.05e-06,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "request_id": "gen-emb-1794634665-SfnEvpyS8WtmTJIq6jeG"
+    }
+  ],
+  "summary": [
+    {
+      "strategy": "A",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 9,
+      "hit3_n": 12,
+      "hit1": 0.6,
+      "hit3": 0.8
+    },
+    {
+      "strategy": "B",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333
+    },
+    {
+      "strategy": "C",
+      "split": "dev",
+      "n": 15,
+      "hit1_n": 12,
+      "hit3_n": 14,
+      "hit1": 0.8,
+      "hit3": 0.9333333333333333
+    }
+  ],
+  "finished_at": "2026-11-14T12:37:50.730246+07:00",
+  "cache_hits": 98,
+  "billed_cost_usd_reported": 0.00040706999999999994
+}
